@@ -1,0 +1,39 @@
+#lista img{
+    width: 250px;
+    height: 320px;
+}
+.card{
+    background-color:white;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px black;
+    text-align: center;
+    width: 250px;
+}
+#lista{
+    display: flex;
+    gap: 15px 30px;
+    justify-content: center;
+
+}
+.nome{
+    font-size: larger;
+    font-weight: bolder;
+}
+.texto{
+    color: black;
+}
+/* html body {
+    height: 500%;
+    background: -webkit-linear-gradient(
+      rgb(218, 49, 49),
+      rgba(228, 228, 51, 0.83)
+    );
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    width: 100%;
+  } */
