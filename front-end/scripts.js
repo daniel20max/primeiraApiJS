@@ -1,19 +1,38 @@
 const apiUrl = "http://localhost:3000";
 const lista = document.getElementById('lista');
 
-const getVagas = async() => {
-    const response = await fetch(`${apiUrl}/vagas`);
-    const vagas = await response.json();
-    vagas.map((vaga) => {
-        console.log(vaga.empresa);
-        lista.insertAdjacentHTML('beforeend', `
-        <tr>
-            <th>${vaga.id}</th>
-            <th>${vaga.empresa}</th>
-            <th>${vaga.oportunidade}</th>
-            <th>${vaga.tipo}</th>
-        </tr>
-        `)
+
+const getFilmes = async () => {
+    const response = await fetch(`${apiUrl}/filmes`)
+    const filmes = await response.json()
+
+    filmes.map((filme) => {
+        lista.insertAdjacentHTML(
+            "beforeend",
+            `
+                <section class="card">
+                <img src="${filme.imagem}">
+                <div class="texto">
+                    <div class="nome">${filme.nome}</div>
+                    <div>Genero: ${filme.genero}</div>
+                    <div>Nota: ${filme.nota}</div>
+                <div>
+                </section>
+            `
+        )
     })
-};
-getVagas();
+}
+getFilmes()
+
+const getFilmeById = async () => {
+    const id = document.getElementById("valueID")
+    const response = await fetch(`${apiUrl}/filmes/${id}`)
+    const filmeById = await response.json()
+
+    document.getElementById("filme").insertAdjacentElement(
+        "beforeend"
+        `
+
+        `
+    )
+}
