@@ -13,27 +13,23 @@ const getFilmesById = (req, res) => {
 const postFilme = (req, res) => {
     const filme = req.body
     const newFilme = filmesService.postFilme(filme)
-    res.send(newFilme)
+    res.send(`Filme ${newFilme.nome}`)
 }
 const putFilme = (req, res) => {
-    const id = req.body
-    const attFilme = req.params.id
+    const id = req.params.id
+    const attFilme = req.body
     const filmeChanged = filmesService.atualizarFilme(id, attFilme)
     if(filmeChanged){
-        res.status(200)
+        res.send({message: `Filme ${attFilme.nome} foi atualizado`})
     }
     else{
         res.status(404).json({error: "Filme não encontrado"})
     }
 }
 const deleteFilme = (req, res) => {
-    const delFilme = filmesService.deleteFilme(req.params.id)
-    const valid = filmesService.getFilmesById(delFilme.id).id
-    if(valid === null){
-        res.status(200)
-    }else{
-        res.status(404).json({error: "Filme não encontrado"})
-    }
+    filmesService.deleteFilme(req.params.id)
+    res.send(`Foi deletado com sucesso`)
+    
 }
 module.exports = {
     getFilmes,
