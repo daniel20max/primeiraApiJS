@@ -5,7 +5,7 @@ const filmes = [
         imagem: "https://ingresso-a.akamaihd.net/img/cinema/cartaz/21959-cartaz.jpg",
         genero: "Aventura",
         nota: "10",
-        view: false
+        view: true
     },
     {
         id: 2,

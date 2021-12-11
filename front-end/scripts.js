@@ -17,10 +17,14 @@ const getFilmes = async () => {
                     <div class="nome">${filme.nome}</div>
                     <div>Genero: ${filme.genero}</div>
                     <div>Nota: ${filme.nota}</div>
-                <div>
-                <div>
+                    <div>
+                    ${filme.view? 
+                        '<div><span class="indicator online"></span>Assistiu</div>' : 
+                        '<div><span class="indicator offline"></span>Não Assistiu</div>'}
+                    </div>
                 <button onclick="deleteFilme(${filme.id})" class="botao"> Deletar</button>
                 <button onclick="editarFilme(${filme.id})" class="botao">Editar</button>
+                <button onclick="marcarView(${filme.id})" class="botao">Marcar View</button>
                 </div>
                 </section>
             `
@@ -52,7 +56,7 @@ const getFilmeById = async () => {
             <img src="${filmeById.imagem}">
             <div class="texto">
                 <div class="nome">${filmeById.nome}</div>
-            <div>
+            </div>
         </section>
     
         `
@@ -133,4 +137,24 @@ const editarFilme = async (id) => {
     document.getElementById('imagem').value  = filme.imagem;
     document.getElementById('genero').value = filme.genero;
     document.getElementById('nota').value = filme.nota;
+}
+
+const marcarView = async (id) => {
+    const filme = await getById(id)
+    if(filme.view == false){
+        filme.view = true
+        console.log(filme.view)
+    }else{
+        filme.view = false
+        console.log(filme.view)
+    }
+    const response = await fetch(`${apiUrl}/filmes/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(filme)
+    })
+    lista.innerHTML = '';
+    getFilmes();
 }
